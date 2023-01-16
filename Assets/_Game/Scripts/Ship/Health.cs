@@ -4,9 +4,17 @@ namespace Ship
 {
     public class Health : MonoBehaviour
     {
-        private int _health = 10;
-        
+        [SerializeField] private PlayerData _playerData;
+
+        private int _health;
         private const int MIN_HEALTH = 0;
+
+        private void Start()
+        {
+            _health = _playerData._startHealth;
+        }
+
+
         
         public void TakeDamage(int damage)
         { 
