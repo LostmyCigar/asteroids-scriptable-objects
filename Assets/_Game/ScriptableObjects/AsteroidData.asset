@@ -13,7 +13,25 @@ MonoBehaviour:
   m_Name: AsteroidData
   m_EditorClassIdentifier: 
   _asteroidPrefab: {fileID: 1784223117350305363, guid: 01106835b2bc0e347a3bb06b7544b51a, type: 3}
-  _minSpawnTime: 1
+  spawnPositions:
+  - {x: 14.88, y: -7.59}
+  - {x: -16.27, y: -6.72}
+  - {x: 13.57, y: 9.12}
+  - {x: -14.62, y: 10.5}
+  _minSpawnTime: 2
   _maxSpawnTime: 4
-  _minAmount: 1
-  _maxAmount: 2
+  _minSpawnAmount: 3
+  _maxSpawnAmount: 6
+  astroidSprites:
+  - {fileID: 21300000, guid: b12fc8514e852bf48b42f405a9499f64, type: 3}
+  astroidColors:
+  - {r: 1, g: 0.29520613, b: 0.0603773, a: 1}
+  - {r: 0.2604121, g: 1, b: 0.058823526, a: 1}
+  - {r: 0.058823526, g: 0.25159723, b: 1, a: 1}
+  - {r: 1, g: 0.058823526, b: 0.8097467, a: 1}
+  _minForce: 2.44
+  _maxForce: 5.42
+  _minSize: 0.54
+  _maxSize: 1.38
+  _minTorque: 0.45
+  _maxTorque: 0.9

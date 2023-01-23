@@ -15,7 +15,6 @@ namespace Ship
         [Header("Values:")]
         [SerializeField]
         private PlayerData _playerData;
-        [SerializeField] private float _speed = 0.2f;
 
         private Rigidbody2D _rigidbody;
 

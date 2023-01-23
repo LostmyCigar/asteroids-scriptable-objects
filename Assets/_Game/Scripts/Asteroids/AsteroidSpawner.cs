@@ -60,53 +60,61 @@ namespace Asteroids
             
             for (var i = 0; i < amount; i++)
             {
-                var location = GetSpawnLocation();
-                var position = GetStartPosition(location);
+                var position = GetSpawnLocation();
                 Instantiate(_asteroidData._asteroidPrefab, position, Quaternion.identity);
             }
         }
 
-        private static SpawnLocation GetSpawnLocation()
+        private Vector3 GetSpawnLocation()
         {
-            var roll = Random.Range(0, 4);
+            var rand = Random.Range(0, _asteroidData.spawnPositions.Length);
 
-            return roll switch
-            {
-                1 => SpawnLocation.Bottom,
-                2 => SpawnLocation.Left,
-                3 => SpawnLocation.Right,
-                _ => SpawnLocation.Top
-            };
+            return _asteroidData.spawnPositions[rand];
         }
 
-        private Vector3 GetStartPosition(SpawnLocation spawnLocation)
+        //private Vector3 GetStartPosition(SpawnLocation spawnLocation)
+        //{
+        //    var pos = new Vector3 { z = Mathf.Abs(_camera.transform.position.z) };
+            
+        //    const float padding = 5f;
+        //    switch (spawnLocation)
+        //    {
+        //        case SpawnLocation.Top:
+        //            pos.x = Random.Range(0f, Screen.width);
+        //            pos.y = Screen.height + padding;
+        //            break;
+        //        case SpawnLocation.Bottom:
+        //            pos.x = Random.Range(0f, Screen.width);
+        //            pos.y = 0f - padding;
+        //            break;
+        //        case SpawnLocation.Left:
+        //            pos.x = 0f - padding;
+        //            pos.y = Random.Range(0f, Screen.height);
+        //            break;
+        //        case SpawnLocation.Right:
+        //            pos.x = Screen.width - padding;
+        //            pos.y = Random.Range(0f, Screen.height);
+        //            break;
+        //        default:
+        //            throw new ArgumentOutOfRangeException(nameof(spawnLocation), spawnLocation, null);
+        //    }
+            
+        //    return _camera.ScreenToWorldPoint(pos);
+        //}
+
+        private void OnDrawGizmos()
         {
-            var pos = new Vector3 { z = Mathf.Abs(_camera.transform.position.z) };
-            
-            const float padding = 5f;
-            switch (spawnLocation)
+            if (_asteroidData == null)
+                return;
+
+            if (_asteroidData.spawnPositions == null)
+                return;
+
+            Gizmos.color = Color.red;
+            for (int i = 0; i < _asteroidData.spawnPositions.Length; i++)
             {
-                case SpawnLocation.Top:
-                    pos.x = Random.Range(0f, Screen.width);
-                    pos.y = Screen.height + padding;
-                    break;
-                case SpawnLocation.Bottom:
-                    pos.x = Random.Range(0f, Screen.width);
-                    pos.y = 0f - padding;
-                    break;
-                case SpawnLocation.Left:
-                    pos.x = 0f - padding;
-                    pos.y = Random.Range(0f, Screen.height);
-                    break;
-                case SpawnLocation.Right:
-                    pos.x = Screen.width - padding;
-                    pos.y = Random.Range(0f, Screen.height);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(spawnLocation), spawnLocation, null);
+                Gizmos.DrawSphere(_asteroidData.spawnPositions[i], 0.5f);
             }
-            
-            return _camera.ScreenToWorldPoint(pos);
         }
     }
 }
